@@ -1,0 +1,10 @@
+[build]
+# Number of parallel jobs (adjust based on your CPU cores)
+jobs = 8
+
+[net]
+# Faster git fetches for dependencies
+git-fetch-with-cli = true
+
+[registries.crates-io]
+protocol = "sparse"  # Faster crate index updates

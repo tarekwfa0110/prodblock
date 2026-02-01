@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0b;
+      color: #fafafa;
+      padding: 1rem;
+      min-width: 200px;
+      margin: 0;
+    }
+    h1 {
+      font-size: 1rem;
+      margin: 0 0 0.5rem 0;
+      font-weight: 600;
+    }
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      background: #111113;
+      border-radius: 6px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #71717a;
+    }
+    .dot.active {
+      background: #22c55e;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .label {
+      font-size: 0.85rem;
+      color: #a1a1aa;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔒 Prodblock</h1>
+  <div class="status">
+    <div class="dot" id="status-dot"></div>
+    <span class="label" id="status-text">Checking...</span>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

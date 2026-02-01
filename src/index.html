@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prodblock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Choice Screen: Pick from 3 time-appropriate activities -->
+      <div id="choice" class="screen active">
+        <div class="screen-content">
+          <h1 class="gradient-text">What will you focus on?</h1>
+          <div id="choice-choices" class="choices"></div>
+          <div id="choice-empty" class="empty-state" style="display: none;">
+            <p>No activities configured yet.</p>
+            <button id="choice-go-config" class="btn secondary">Add Activities</button>
+          </div>
+          <button id="choice-confirm" class="btn primary" disabled>Start Focus</button>
+          <div class="nav-links">
+            <button id="nav-config" class="btn ghost">⚙️ Settings</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Confirmation Screen -->
+      <div id="confirmation" class="screen">
+        <div class="screen-content">
+          <div class="confirmation-icon">🎯</div>
+          <h1>Ready to focus on</h1>
+          <p id="confirmation-name" class="activity-name"></p>
+          <p id="confirmation-details" class="activity-details"></p>
+          <div class="btn-group">
+            <button id="confirmation-back" class="btn secondary">Back</button>
+            <button id="confirmation-start" class="btn primary">Let's Go!</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lock Screen -->
+      <div id="lock" class="screen">
+        <div class="screen-content lock-content">
+          <div class="lock-header">
+            <div class="lock-icon">🔒</div>
+            <h1 id="lock-activity-name"></h1>
+          </div>
+          <div class="timer-container">
+            <p class="timer-label">Time remaining</p>
+            <p class="timer" id="lock-timer">0:00</p>
+          </div>
+          <button id="lock-done" class="btn primary large" disabled>I'm Done</button>
+          <button id="lock-exit-testing" class="btn ghost testing" style="display: none;">Exit (Dev Only)</button>
+        </div>
+      </div>
+
+      <!-- Config Screen: Activity List -->
+      <div id="config" class="screen">
+        <div class="screen-content">
+          <h1>Activities</h1>
+          <div class="settings-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="config-run-at-startup" />
+              <span>Run at startup</span>
+            </label>
+          </div>
+          <ul id="config-activity-list" class="activity-list"></ul>
+          <button id="config-add" class="btn primary">+ Add Activity</button>
+          <div class="nav-links">
+            <button id="nav-choice" class="btn ghost">← Back to Focus</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Config Form Screen -->
+      <div id="config-form" class="screen">
+        <div class="screen-content">
+          <h1 id="form-title">Add Activity</h1>
+          <form id="activity-form">
+            <input type="hidden" id="form-id" />
+            
+            <div class="form-group">
+              <label for="form-name">Activity Name</label>
+              <input type="text" id="form-name" required placeholder="e.g., Study, Exercise, Deep Work" />
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="form-time">Best Time (24h)</label>
+                <input type="text" id="form-time" placeholder="09:00" pattern="[0-2][0-9]:[0-5][0-9]" />
+              </div>
+              <div class="form-group">
+                <label for="form-min-lock">Lock Minutes</label>
+                <input type="number" id="form-min-lock" min="1" max="480" value="25" />
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="form-apps">Allowed Apps <span class="hint">(one per line, e.g., notepad.exe)</span></label>
+              <textarea id="form-apps" rows="3" placeholder="chrome.exe&#10;code.exe"></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="form-domains">Allowed Websites <span class="hint">(one per line)</span></label>
+              <textarea id="form-domains" rows="3" placeholder="wikipedia.org&#10;stackoverflow.com"></textarea>
+            </div>
+            
+            <p class="form-note">💡 Leave apps/websites empty to block <strong>everything</strong> during focus.</p>
+            
+            <div class="btn-group">
+              <button type="button" id="form-cancel" class="btn secondary">Cancel</button>
+              <button type="submit" class="btn primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
